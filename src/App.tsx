@@ -6,6 +6,7 @@ import { Body } from './site/Body';
 import { NewComponent } from './site/NewComponent';
 import { Button } from './site/Button';
 import { NewButton } from './site/NewButton';
+import Money from './components/Money/Money';
 
 const students = [
   {
@@ -61,6 +62,7 @@ function App() {
     <Body titleForBody={'NEW BODY'}/>
     <Footer titleForFooter={'NEW FOOTER'} />
     <NewComponent students={students}/>
+    <Money />
     </>
   );
 }
