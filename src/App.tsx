@@ -5,6 +5,7 @@ import { Footer } from './site/Footer';
 import { Body } from './site/Body';
 import { NewComponent } from './site/NewComponent';
 import { Button } from './site/Button';
+import { NewButton } from './site/NewButton';
 
 const students = [
   {
@@ -50,6 +51,8 @@ function App() {
 
   return (
     <>
+    <NewButton btnName={'exercise2-button1'} btnColor={'lightblue'}/>
+    <NewButton btnName={'exercise2-button2'} btnColor={'lightgreen'}/>
     <Button onClickHandler={onClickHandler} name='Tumen!' nameBtn={'MyYoutubeChannel-1'}/>
     <Button onClickHandler={onClickHandler} name='Ivan!' nameBtn={'MyYoutubeChannel-2'} />
     <button onClick={foo1}>1</button>
