@@ -1,68 +1,52 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import './App.css';
-import { Header } from './site/Header';
-import { Footer } from './site/Footer';
-import { Body } from './site/Body';
-import { NewComponent } from './site/NewComponent';
-import { Button } from './site/Button';
-import { NewButton } from './site/NewButton';
 import Money from './components/Money/Money';
+import { FullInput } from './components/Lesson3/FullInput';
+import { Input } from './components/Lesson3/Input';
+import { Button } from './components/Lesson3/Button';
 
-const students = [
-  {
-    id: 1,
-    name: 'Tumen',
-    age: 32,
-  },
-  {
-    id: 2,
-    name: 'Aldar',
-    age: -1,
-  },
-  {
-    id: 3,
-    name: 'Ruslan',
-    age: 322,
-  },
-  {
-    id: 4,
-    name: 'Elnur',
-    age: 122,
-  },
-  {
-    id: 5,
-    name: 'Vasiliy',
-    age: 2,
-  }
-]
 
 function App() {
 
-  const onClickHandler = (name: string) => {
-    console.log(`Hellow, I'm ${name}`)
+  const [response, setResponse] = useState([
+    { message: 'message1' },
+    { message: 'message2' },
+    { message: 'message3' },
+  ])
+
+  const addMessage = (newMessage: string) => {
+    setResponse([{ message: newMessage }, ...response]);
   }
 
-  const foo1 = () => {
-    console.log(100200)
-  }
+  // 2:
+  const [input, setInput] = useState('');
 
-  const foo2 = (num: number) => {
-    console.log('foo2:', num)
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.currentTarget.value)
+  };
+
+  const onClickAddBtn = (mess: string) => {
+    setResponse([...response, {message: input}]);
+    setInput('');
   }
 
   return (
     <>
-    <NewButton btnName={'exercise2-button1'} btnColor={'lightblue'}/>
-    <NewButton btnName={'exercise2-button2'} btnColor={'lightgreen'}/>
-    <Button onClickHandler={onClickHandler} name='Tumen!' nameBtn={'MyYoutubeChannel-1'}/>
-    <Button onClickHandler={onClickHandler} name='Ivan!' nameBtn={'MyYoutubeChannel-2'} />
-    <button onClick={foo1}>1</button>
-    <button onClick={() => foo2(100200)}>2</button>
-    <Header titleForHeader={'NEW Header'} />
-    <Body titleForBody={'NEW BODY'}/>
-    <Footer titleForFooter={'NEW FOOTER'} />
-    <NewComponent students={students}/>
-    <Money />
+      <div>
+        <Money />
+      </div>
+
+      <h2>Lesson 3</h2>
+      <div>
+        <FullInput addMessage={addMessage}/>
+
+        { 
+          response.map((el, index) => <div key={index}> {el.message} </div>)
+        }
+
+        <Input inputHandler={inputHandler} input={input}/>
+        <Button title={input} onClickAddBtn={onClickAddBtn}/>
+      </div>
     </>
   );
 }
